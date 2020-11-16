@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sign Up Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="style-signup.css">
+    <link rel="stylesheet" href="style-districts.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="password_style.css">
+</head>
+
+<body>
+   
+<!-- Navigation BAR -->
+    <div class="wrapper">
+        <header>
+           
+           <nav>    
+              
+              <div class="menu-icon">
+                 <i class="fa fa-bars fa-2x"></i>
+                 
+              </div>
+            
+              <div class="logo" >
+                 <img src="logo.jpg" alt="logo">
+                 
+              </div>
+              <div class="menu">
+                 <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="districts.html">Districts</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    
+                 </ul>
+              </div>
+            </nav>
+        </header>
+    </div>
+
+
+<!-- Signup FORM -->
+
+
+    <div class="signup-form">
+        <form name="myform" method="post" action="index.html" onsubmit="return phoneemail()">
+            <h2>Sign Up</h2>
+            <p>Please fill in this form to create an account!</p>
+            <hr>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" name="name" placeholder="Full Name" required="required">
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                    <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input type="number" class="form-control" name="phonenumbe" placeholder="Phone Number" required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input type="password" class="form-control" onkeyup="passwordChanged()" name="password" placeholder="Password" required="required">
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span></i></span>
+                    <h3>Password Strength</h3>
+                    <h3 id="strength"></h3>
+                   
+                </div>
+            </div>
+          
+           
+            <div class="form-group">
+                <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                <div class="text-center">Already have an account? <a href="login.html">Login here</a></div>
+            </div>
+            
+        </form>
+        
+    </div>
+
+
+<script>
+function passwordChanged() {
+
+           
+let pwd=document.myform.password.value; 
+let strength=document.getElementById("strength");
+
+            
+if(pwd.length<=6)no=1;
+
+// If the password length is greater than 6 and contain any lowercase alphabet or any number or any special character
+if(pwd.length>6 && (pwd.match(/[a-z]/) || pwd.match(/\d+/) || pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)))no=2;
+
+// If the password length is greater than 6 and contain alphabet,number,special character respectively
+if(pwd.length>6 && ((pwd.match(/[a-z]/) && pwd.match(/\d+/)) || (pwd.match(/\d+/) && pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) || (pwd.match(/[a-z]/) && pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))))no=3;
+
+// If the password length is greater than 6 and must contain alphabets,numbers and special characters
+if(pwd.length>6 && pwd.match(/[a-z]/) && pwd.match(/\d+/) && pwd.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))no=4;
+    
+if(no==1){
+    strength.innerHTML = "Very Weak";
+    strength.style.background="red";
+    strength.style.color="white"
+}
+
+else
+if(no==2){
+    strength.innerHTML = "Weak";
+    strength.style.background="#a84232";
+    strength.style.color="white"
+}
+
+else
+if(no==3){
+    strength.innerHTML = "Medium";
+    strength.style.background="orange";
+    strength.style.color="white"
+}
+
+if(no==4){
+    strength.innerHTML = "Strong";
+    strength.style.background="Green";
+    strength.style.color="white";
+  
+}
+}
+
+function phoneemail(){  
+ 
+	let name=document.myform.email.value;  
+    let pass=document.myform.password.value;  
+    let num=document.myform.phonenumbe.value;
+
+      let reg=/^([A-Za-z0-9\.-]+)@([A-Za-z0-9\-]+).([a-z]{2,3})(.[a-z]{2,3})?$/
+	  
+	if (name==null || name==""){  
+	  alert("Name can't be blank");  
+	  return false;  
+	}
+	else if(pass.length<6){  
+	  alert("Password must be at least 6 characters long.");  
+	  return false;  
+      }  
+	else if(!(reg.test(name))){
+		alert("Invalid Email Format");
+		return false;
+    }
+    else if(!(num.length==10)){
+		alert("Digits of Phone Number Not Equal to 10");
+		return false;
+	}
+
+
+      else if(n==4)
+      return true;
+	
+	}
+</script>
+  
+</body>
+</html>
